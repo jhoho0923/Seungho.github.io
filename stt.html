@@ -154,7 +154,7 @@
                             found = true;
                             appendMessage('Chatbot', subCategory.message);
                             showSubCategories(category)
-                        } else if (userMessage === '상위메뉴' || userMessage === '상위 메뉴') {
+                        } else if (userMessage === '상위메뉴' ||userMessage === '상위 메뉴') {
                             found = true;
                             showWelcomeMessage();
                             break;
@@ -165,8 +165,8 @@
             return found;
         }
 
+
         function findByNumber(userMessage) {
-            // 상위 카테고리에 대한 처리
             if (CATEGORY_STATUS === 1) {
                 level1_category = parseInt(userMessage);
                 // !isNaN(level1_category): 숫자인 조건
@@ -210,15 +210,16 @@
             let found = false;
             // 상위 및 하위 카테고리를 찾았는지 유무를 저장하는 상태변수
             // 해당 상위 카테고리를 찾지 못했을 경우 다른 안내 메세지 처리를 위한 용도
-
-            // 키워드 검색 방식
+            //keyword search
             found = findByKeyword(found, userMessage);
 
-            // 메뉴 번호 검색 방식
-            if (!found){
+            if(!found) {
+                // 상위 카테고리에 대한 처리
                 findByNumber(userMessage);
-            }
 
+
+            }
+            //number search
             // if (!found) {
             //     // 다른 키워드에 대한 기본 응답
             //     appendMessage('Chatbot', '죄송합니다. 입력하신 정보로는 처리할 수 없습니다.<br>');
@@ -236,11 +237,6 @@
                 }
                 chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
             }, 500);
-
-            // for (let i = 0; i < category.level2.length; i++) {
-            //     chatContainer.append(`${category.level2[i].number}. ${category.level2[i].name}<br>`);
-            // }
-            // chatContainer.scrollTop(chatContainer.prop('scrollHeight'));
         }
         // 초기 환영 메시지 출력
         showWelcomeMessage();
@@ -265,12 +261,10 @@
                 sendMessage(userMessage);
             }
         });
-
         // 음성 입력 버튼 클릭 이벤트
         speechBtn.click(function() {
             startSpeechRecognition();
         });
-
     });
 </script>
 </body>
